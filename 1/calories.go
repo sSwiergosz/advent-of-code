@@ -39,23 +39,23 @@ func createElvesCaloriesMap(calories []string) []int {
 			count = 0
 		}
 	}
+	elves = append(elves, count)
 
 	return elves
 }
 
-func sortElvesSlice(calories []string) []int {
-	e := createElvesCaloriesMap(calories)
-
-	sort.Slice(e, func(i, j int) bool {
-		return e[i] > e[j]
+func sortElvesSlice(c []int) []int {
+	sort.Slice(c, func(i, j int) bool {
+		return c[i] > c[j]
 	})
 
-	return e
+	return c
 }
 
 func main() {
 	c, _ := readLines("calories.txt")
-	e := sortElvesSlice(c)
+	caloriesMap := createElvesCaloriesMap(c)
+	e := sortElvesSlice(caloriesMap)
 
 	fmt.Printf("Max calories -> %v\n", e[0])
 	fmt.Printf("TOP3 elves calories -> %v", e[0]+e[1]+e[2])
